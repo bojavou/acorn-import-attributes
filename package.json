@@ -1,0 +1,15 @@
+{
+    "name": "@bojavou/acorn-import-attributes",
+    "description": "Import attributes for acorn",
+    "version": "0.1.0",
+    "type": "module",
+    "exports": "./package.mjs",
+    "directories": {
+        "lib": "lib",
+        "test": "test"
+    },
+    "imports": {
+        "#lib/*": "./lib/*",
+        "#test/*": "./test/*"
+    }
+}
