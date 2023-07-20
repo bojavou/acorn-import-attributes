@@ -1,0 +1,10 @@
+# Normalize breaks
+* text=auto
+
+# JSON
+*.json text
+
+# JavaScript
+*.cjs text
+*.js text
+*.mjs text
