@@ -1,7 +1,7 @@
 {
     "name": "@bojavou/acorn-import-attributes",
     "description": "Import attributes for acorn",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "homepage": "https://github.com/bojavou/acorn-import-attributes",
     "bugs": "https://github.com/bojavou/acorn-import-attributes/issues",
     "license": "MIT",

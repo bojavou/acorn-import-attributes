@@ -57,7 +57,7 @@ The default export is a factory function which produces a plugin. Pass an option
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | `with` | `boolean` | Recognize `with` as an import attributes keyword. | `true` |
-| `assert` | `boolean` | Recognize `assert` as an import attributes kwyrod. | `false` |
+| `assert` | `boolean` | Recognize `assert` as an import attributes keyword. | `false` |
 
 
 ## ESTree
