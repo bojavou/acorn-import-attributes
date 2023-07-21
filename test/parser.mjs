@@ -247,3 +247,177 @@ import('gadget', options,)
     }]
   })
 })
+
+test('export wildcard absent', t => {
+  const Parser = extend()
+  const source = `
+export * from 'gadget'
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: null,
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: []
+    }]
+  })
+})
+
+test('export wildcard with', t => {
+  const Parser = extend()
+  const source = `
+export * from 'gadget' with {
+  1: 'value1',
+  two: 'value2',
+  'three': 'value3'
+}
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: null,
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: [{
+        key: { type: 'Literal', value: 1 },
+        value: { type: 'Literal', value: 'value1' }
+      }, {
+        key: { type: 'Identifier', name: 'two' },
+        value: { type: 'Literal', value: 'value2' }
+      }, {
+        key: { type: 'Literal', value: 'three' },
+        value: { type: 'Literal', value: 'value3' }
+      }]
+    }]
+  })
+})
+
+test('export wildcard assert', t => {
+  const Parser = extend({ assert: true })
+  const source = `
+export * from 'gadget' assert {
+  1: 'value1',
+  two: 'value2',
+  'three': 'value3'
+}
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: null,
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: [{
+        key: { type: 'Literal', value: 1 },
+        value: { type: 'Literal', value: 'value1' }
+      }, {
+        key: { type: 'Identifier', name: 'two' },
+        value: { type: 'Literal', value: 'value2' }
+      }, {
+        key: { type: 'Literal', value: 'three' },
+        value: { type: 'Literal', value: 'value3' }
+      }]
+    }]
+  })
+})
+
+test('export namespace absent', t => {
+  const Parser = extend()
+  const source = `
+export * as gadget from 'gadget'
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: { type: 'Identifier', name: 'gadget' },
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: []
+    }]
+  })
+})
+
+test('export namespace with', t => {
+  const Parser = extend()
+  const source = `
+export * as gadget from 'gadget' with {
+  1: 'value1',
+  two: 'value2',
+  'three': 'value3'
+}
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: { type: 'Identifier', name: 'gadget' },
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: [{
+        key: { type: 'Literal', value: 1 },
+        value: { type: 'Literal', value: 'value1' }
+      }, {
+        key: { type: 'Identifier', name: 'two' },
+        value: { type: 'Literal', value: 'value2' }
+      }, {
+        key: { type: 'Literal', value: 'three' },
+        value: { type: 'Literal', value: 'value3' }
+      }]
+    }]
+  })
+})
+
+test('export namespace assert', t => {
+  const Parser = extend({ assert: true })
+  const source = `
+export * as gadget from 'gadget' assert {
+  1: 'value1',
+  two: 'value2',
+  'three': 'value3'
+}
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: { type: 'Identifier', name: 'gadget' },
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: [{
+        key: { type: 'Literal', value: 1 },
+        value: { type: 'Literal', value: 'value1' }
+      }, {
+        key: { type: 'Identifier', name: 'two' },
+        value: { type: 'Literal', value: 'value2' }
+      }, {
+        key: { type: 'Literal', value: 'three' },
+        value: { type: 'Literal', value: 'value3' }
+      }]
+    }]
+  })
+})
+
+test('export namespace string', t => {
+  const Parser = extend()
+  const source = `
+export * as 'string name' from 'gadget' with { attribute: 'value' }
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportAllDeclaration',
+      exported: { type: 'Literal', value: 'string name' },
+      source: { type: 'Literal', value: 'gadget' },
+      attributes: [{
+        key: { type: 'Identifier', name: 'attribute' },
+        value: { type: 'Literal', value: 'value' }
+      }]
+    }]
+  })
+})
