@@ -105,3 +105,123 @@ import gadget from 'gadget' assert {
     }]
   })
 })
+
+test('import call absent', t => {
+  const Parser = extend()
+  const source = `
+import('gadget')
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'ImportExpression',
+        source: { type: 'Literal', value: 'gadget' },
+        options: null
+      }
+    }]
+  })
+})
+
+test('import call absent trail', t => {
+  const Parser = extend()
+  const source = `
+import('gadget',)
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'ImportExpression',
+        source: { type: 'Literal', value: 'gadget' },
+        options: null
+      }
+    }]
+  })
+})
+
+test('import call literal', t => {
+  const Parser = extend()
+  const source = `
+import('gadget', { a: 1, b: 2, c: 3 })
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'ImportExpression',
+        source: { type: 'Literal', value: 'gadget' },
+        options: {
+          properties: [{
+            key: { type: 'Identifier', name: 'a' },
+            value: { type: 'Literal', value: 1 }
+          }, {
+            key: { type: 'Identifier', name: 'b' },
+            value: { type: 'Literal', value: 2 }
+          }, {
+            key: { type: 'Identifier', name: 'c' },
+            value: { type: 'Literal', value: 3 }
+          }]
+        }
+      }
+    }]
+  })
+})
+
+test('import call variable', t => {
+  const Parser = extend()
+  const source = `
+const options = {}
+import('gadget', options)
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'VariableDeclaration',
+      declarations: [{
+        id: { type: 'Identifier', name: 'options' },
+        init: { type: 'ObjectExpression' }
+      }]
+    }, {
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'ImportExpression',
+        source: { type: 'Literal', value: 'gadget' },
+        options: { type: 'Identifier', name: 'options' }
+      }
+    }]
+  })
+})
+
+test('import call present trail', t => {
+  const Parser = extend()
+  const source = `
+const options = {}
+import('gadget', options,)
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'VariableDeclaration',
+      declarations: [{
+        id: { type: 'Identifier', name: 'options' },
+        init: { type: 'ObjectExpression' }
+      }]
+    }, {
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'ImportExpression',
+        source: { type: 'Literal', value: 'gadget' },
+        options: { type: 'Identifier', name: 'options' }
+      }
+    }]
+  })
+})
