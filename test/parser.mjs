@@ -252,6 +252,115 @@ import('gadget', options,)
   })
 })
 
+test('export named absent', t => {
+  const Parser = extend()
+  const source = `
+export { gadget } from 'gadget'
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportNamedDeclaration',
+      specifiers: [{
+        local: { type: 'Identifier', name: 'gadget' },
+        exported: { type: 'Identifier', name: 'gadget' }
+      }],
+      attributesKeyword: null,
+      attributes: []
+    }]
+  })
+})
+
+test('export named with', t => {
+  const Parser = extend()
+  const source = `
+export { gadget } from 'gadget' with {
+  1: 'value1',
+  two: 'value2',
+  'three': 'value3'
+}
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportNamedDeclaration',
+      specifiers: [{
+        local: { type: 'Identifier', name: 'gadget' },
+        exported: { type: 'Identifier', name: 'gadget' }
+      }],
+      attributesKeyword: 'with',
+      attributes: [{
+        key: { type: 'Literal', value: 1 },
+        value: { type: 'Literal', value: 'value1' }
+      }, {
+        key: { type: 'Identifier', name: 'two' },
+        value: { type: 'Literal', value: 'value2' }
+      }, {
+        key: { type: 'Literal', value: 'three' },
+        value: { type: 'Literal', value: 'value3' }
+      }]
+    }]
+  })
+})
+
+test('export named assert', t => {
+  const Parser = extend({ assert: true })
+  const source = `
+export { gadget } from 'gadget' assert {
+  1: 'value1',
+  two: 'value2',
+  'three': 'value3'
+}
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportNamedDeclaration',
+      specifiers: [{
+        local: { type: 'Identifier', name: 'gadget' },
+        exported: { type: 'Identifier', name: 'gadget' }
+      }],
+      attributesKeyword: 'assert',
+      attributes: [{
+        key: { type: 'Literal', value: 1 },
+        value: { type: 'Literal', value: 'value1' }
+      }, {
+        key: { type: 'Identifier', name: 'two' },
+        value: { type: 'Literal', value: 'value2' }
+      }, {
+        key: { type: 'Literal', value: 'three' },
+        value: { type: 'Literal', value: 'value3' }
+      }]
+    }]
+  })
+})
+
+test('export named string', t => {
+  const Parser = extend()
+  const source = `
+export { 'string name' } from 'gadget' with { attribute: 'value' }
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ExportNamedDeclaration',
+      specifiers: [{
+        local: { type: 'Literal', value: 'string name' },
+        exported: { type: 'Literal', value: 'string name' }
+      }],
+      attributesKeyword: 'with',
+      attributes: [{
+        key: { type: 'Identifier', name: 'attribute' },
+        value: { type: 'Literal', value: 'value' }
+      }]
+    }]
+  })
+})
+
 test('export wildcard absent', t => {
   const Parser = extend()
   const source = `
