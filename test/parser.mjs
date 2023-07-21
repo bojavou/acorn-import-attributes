@@ -45,6 +45,7 @@ import gadget from 'gadget'
     type: 'Program',
     body: [{
       type: 'ImportDeclaration',
+      attributesKeyword: null,
       attributes: []
     }]
   })
@@ -64,6 +65,7 @@ import gadget from 'gadget' with {
     type: 'Program',
     body: [{
       type: 'ImportDeclaration',
+      attributesKeyword: 'with',
       attributes: [{
         key: { type: 'Literal', value: 1 },
         value: { type: 'Literal', value: 'value1' }
@@ -92,6 +94,7 @@ import gadget from 'gadget' assert {
     type: 'Program',
     body: [{
       type: 'ImportDeclaration',
+      attributesKeyword: 'assert',
       attributes: [{
         key: { type: 'Literal', value: 1 },
         value: { type: 'Literal', value: 'value1' }
@@ -120,6 +123,7 @@ import { 'string name' as gadget } from 'gadget' with { attribute: 'value' }
         imported: { type: 'Literal', value: 'string name' },
         local: { type: 'Identifier', name: 'gadget' }
       }],
+      attributesKeyword: 'with',
       attributes: [{
         key: { type: 'Identifier', name: 'attribute' },
         value: { type: 'Literal', value: 'value' }
@@ -260,6 +264,7 @@ export * from 'gadget'
       type: 'ExportAllDeclaration',
       exported: null,
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: null,
       attributes: []
     }]
   })
@@ -281,6 +286,7 @@ export * from 'gadget' with {
       type: 'ExportAllDeclaration',
       exported: null,
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: 'with',
       attributes: [{
         key: { type: 'Literal', value: 1 },
         value: { type: 'Literal', value: 'value1' }
@@ -311,6 +317,7 @@ export * from 'gadget' assert {
       type: 'ExportAllDeclaration',
       exported: null,
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: 'assert',
       attributes: [{
         key: { type: 'Literal', value: 1 },
         value: { type: 'Literal', value: 'value1' }
@@ -337,6 +344,7 @@ export * as gadget from 'gadget'
       type: 'ExportAllDeclaration',
       exported: { type: 'Identifier', name: 'gadget' },
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: null,
       attributes: []
     }]
   })
@@ -358,6 +366,7 @@ export * as gadget from 'gadget' with {
       type: 'ExportAllDeclaration',
       exported: { type: 'Identifier', name: 'gadget' },
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: 'with',
       attributes: [{
         key: { type: 'Literal', value: 1 },
         value: { type: 'Literal', value: 'value1' }
@@ -388,6 +397,7 @@ export * as gadget from 'gadget' assert {
       type: 'ExportAllDeclaration',
       exported: { type: 'Identifier', name: 'gadget' },
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: 'assert',
       attributes: [{
         key: { type: 'Literal', value: 1 },
         value: { type: 'Literal', value: 'value1' }
@@ -414,6 +424,7 @@ export * as 'string name' from 'gadget' with { attribute: 'value' }
       type: 'ExportAllDeclaration',
       exported: { type: 'Literal', value: 'string name' },
       source: { type: 'Literal', value: 'gadget' },
+      attributesKeyword: 'with',
       attributes: [{
         key: { type: 'Identifier', name: 'attribute' },
         value: { type: 'Literal', value: 'value' }
