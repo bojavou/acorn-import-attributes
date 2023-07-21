@@ -2,6 +2,11 @@
     "name": "@bojavou/acorn-import-attributes",
     "description": "Import attributes for acorn",
     "version": "0.1.0",
+    "homepage": "https://github.com/bojavou/acorn-import-attributes",
+    "bugs": "https://github.com/bojavou/acorn-import-attributes/issues",
+    "license": "MIT",
+    "repository": "github:bojavou/acorn-import-attributes",
+    "keywords": ["import-attributes", "import-assertions", "acorn"],
     "type": "module",
     "exports": "./package.mjs",
     "directories": {
