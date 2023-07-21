@@ -106,6 +106,28 @@ import gadget from 'gadget' assert {
   })
 })
 
+test('import string', t => {
+  const Parser = extend()
+  const source = `
+import { 'string name' as gadget } from 'gadget' with { attribute: 'value' }
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ImportDeclaration',
+      specifiers: [{
+        imported: { type: 'Literal', value: 'string name' },
+        local: { type: 'Identifier', name: 'gadget' }
+      }],
+      attributes: [{
+        key: { type: 'Identifier', name: 'attribute' },
+        value: { type: 'Literal', value: 'value' }
+      }]
+    }]
+  })
+})
+
 test('import call absent', t => {
   const Parser = extend()
   const source = `
