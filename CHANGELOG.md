@@ -10,4 +10,5 @@
 
 _First release._
 
+[1.0.1]: https://github.com/bojavou/acorn-import-attributes/releases/tag/v1.0.1
 [1.0.0]: https://github.com/bojavou/acorn-import-attributes/releases/tag/v1.0.0
