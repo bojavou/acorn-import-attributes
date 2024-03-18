@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1] - 2023-07-21
+
+### Fixed
+
+- Correct typo in docs.
+
 ## [1.0.0] - 2023-07-21
 
 _First release._
