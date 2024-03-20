@@ -51,11 +51,26 @@ import gadget from 'gadget'
   })
 })
 
+test('import number key', t => {
+  const Parser = extend()
+  const source = `
+import gadget from 'gadget' with { 1: 'value' }
+`.trim()
+  t.throws(() => { Parser.parse(source, options) })
+})
+
+test('import bigint key', t => {
+  const Parser = extend()
+  const source = `
+import gadget from 'gadget' with { 1n: 'value' }
+`.trim()
+  t.throws(() => { Parser.parse(source, options) })
+})
+
 test('import with', t => {
   const Parser = extend()
   const source = `
 import gadget from 'gadget' with {
-  1: 'value1',
   two: 'value2',
   'three': 'value3',
 }
@@ -67,9 +82,6 @@ import gadget from 'gadget' with {
       type: 'ImportDeclaration',
       attributesKeyword: 'with',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -84,7 +96,6 @@ test('import assert', t => {
   const Parser = extend({ assert: true })
   const source = `
 import gadget from 'gadget' assert {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -96,9 +107,6 @@ import gadget from 'gadget' assert {
       type: 'ImportDeclaration',
       attributesKeyword: 'assert',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -276,7 +284,6 @@ test('export named with', t => {
   const Parser = extend()
   const source = `
 export { gadget } from 'gadget' with {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -292,9 +299,6 @@ export { gadget } from 'gadget' with {
       }],
       attributesKeyword: 'with',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -309,7 +313,6 @@ test('export named assert', t => {
   const Parser = extend({ assert: true })
   const source = `
 export { gadget } from 'gadget' assert {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -325,9 +328,6 @@ export { gadget } from 'gadget' assert {
       }],
       attributesKeyword: 'assert',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -383,7 +383,6 @@ test('export wildcard with', t => {
   const Parser = extend()
   const source = `
 export * from 'gadget' with {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -397,9 +396,6 @@ export * from 'gadget' with {
       source: { type: 'Literal', value: 'gadget' },
       attributesKeyword: 'with',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -414,7 +410,6 @@ test('export wildcard assert', t => {
   const Parser = extend({ assert: true })
   const source = `
 export * from 'gadget' assert {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -428,9 +423,6 @@ export * from 'gadget' assert {
       source: { type: 'Literal', value: 'gadget' },
       attributesKeyword: 'assert',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -463,7 +455,6 @@ test('export namespace with', t => {
   const Parser = extend()
   const source = `
 export * as gadget from 'gadget' with {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -477,9 +468,6 @@ export * as gadget from 'gadget' with {
       source: { type: 'Literal', value: 'gadget' },
       attributesKeyword: 'with',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
@@ -494,7 +482,6 @@ test('export namespace assert', t => {
   const Parser = extend({ assert: true })
   const source = `
 export * as gadget from 'gadget' assert {
-  1: 'value1',
   two: 'value2',
   'three': 'value3'
 }
@@ -508,9 +495,6 @@ export * as gadget from 'gadget' assert {
       source: { type: 'Literal', value: 'gadget' },
       attributesKeyword: 'assert',
       attributes: [{
-        key: { type: 'Literal', value: 1 },
-        value: { type: 'Literal', value: 'value1' }
-      }, {
         key: { type: 'Identifier', name: 'two' },
         value: { type: 'Literal', value: 'value2' }
       }, {
