@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Correct typo in docs
+- Correct typo in docs ([36dbbde](https://github.com/bojavou/acorn-import-attributes/commit/36dbbde3ef3ed95e6b0eedbe43b173bbcf8d84c7))
 
 ## [1.0.0] - 2023-07-21
 
