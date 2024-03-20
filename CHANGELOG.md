@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.0] - 2024-03-20
+
+### Changed
+
+- **Breaking:** stop supporting numeric literal key ([e808b8a](https://github.com/bojavou/acorn-import-attributes/commit/e808b8ac26e14bb6dbe8fb9c4daf71d4f2d362a4))
+
 ## [1.0.1] - 2023-07-21
 
 ### Fixed
@@ -10,5 +16,6 @@
 
 _First release._
 
+[2.0.0]: https://github.com/bojavou/acorn-import-attributes/releases/tag/v2.0.0
 [1.0.1]: https://github.com/bojavou/acorn-import-attributes/releases/tag/v1.0.1
 [1.0.0]: https://github.com/bojavou/acorn-import-attributes/releases/tag/v1.0.0
