@@ -2,7 +2,7 @@
 
 [Import attributes](https://github.com/tc39/proposal-import-attributes) for [acorn](https://github.com/acornjs/acorn).
 
-Parses to the [experimental Import Attributes](https://github.com/estree/estree/blob/master/experimental/import-attributes.md) ESTree extension.
+Parses to the [stage3 Import Attributes](https://github.com/estree/estree/blob/master/stage3/import-attributes.md) ESTree extension.
 
 Supports both the `with` and deprecated `assert` keywords. Both are parsed to the same tree structure. A property `attributesKeyword` is added to expose which keyword was present in the source.
 
