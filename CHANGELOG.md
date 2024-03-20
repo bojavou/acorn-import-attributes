@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Correct typo in docs.
+- Correct typo in docs
 
 ## [1.0.0] - 2023-07-21
 
