@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.2] - 2024-06-12
+
+### Fixed
+
+- Allow constructs named assert ([97c0cde](https://github.com/bojavou/acorn-import-attributes/commit/97c0cde3205589275dbdee3436b3a6668fe31145))
+
 ## [2.0.1] - 2024-03-20
 
 ### Changed
