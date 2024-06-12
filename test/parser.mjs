@@ -525,3 +525,27 @@ export * as 'string name' from 'gadget' with { attribute: 'value' }
     }]
   })
 })
+
+test('assert variable', t => {
+  const Parser = extend({ assert: true })
+  const source = `
+const assert = null
+`.trim()
+  t.notThrows(() => { Parser.parse(source, options) })
+})
+
+test('assert function', t => {
+  const Parser = extend({ assert: true })
+  const source = `
+function assert () {}
+`.trim()
+  t.notThrows(() => { Parser.parse(source, options) })
+})
+
+test('assert class', t => {
+  const Parser = extend({ assert: true })
+  const source = `
+class assert {}
+`.trim()
+  t.notThrows(() => { Parser.parse(source, options) })
+})
