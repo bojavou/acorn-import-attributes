@@ -140,6 +140,33 @@ import { 'string name' as gadget } from 'gadget' with { attribute: 'value' }
   })
 })
 
+test('import default+named', t => {
+  const Parser = extend()
+  const source = `
+import gadget, { widget } from 'gadget' with { attribute: 'value' }
+`.trim()
+  const tree = Parser.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ImportDeclaration',
+      specifiers: [{
+        type: 'ImportDefaultSpecifier',
+        local: { type: 'Identifier', name: 'gadget' }
+      }, {
+        type: 'ImportSpecifier',
+        imported: { type: 'Identifier', name: 'widget' },
+        local: { type: 'Identifier', name: 'widget' }
+      }],
+      attributesKeyword: 'with',
+      attributes: [{
+        key: { type: 'Identifier', name: 'attribute' },
+        value: { type: 'Literal', value: 'value' }
+      }]
+    }]
+  })
+})
+
 test('import call absent', t => {
   const Parser = extend()
   const source = `
