@@ -167,6 +167,32 @@ import gadget, { widget } from 'gadget' with { attribute: 'value' }
   })
 })
 
+test('import default+namespace', t => {
+  const Parse = extend()
+  const source = `
+import gadget, * as module from 'gadget' with { attribute: 'value' }
+`.trim()
+  const tree = Parse.parse(source, options)
+  t.like(tree, {
+    type: 'Program',
+    body: [{
+      type: 'ImportDeclaration',
+      specifiers: [{
+        type: 'ImportDefaultSpecifier',
+        local: { type: 'Identifier', name: 'gadget' }
+      }, {
+        type: 'ImportNamespaceSpecifier',
+        local: { type: 'Identifier', name: 'module' }
+      }],
+      attributesKeyword: 'with',
+      attributes: [{
+        key: { type: 'Identifier', name: 'attribute' },
+        value: { type: 'Literal', value: 'value' }
+      }]
+    }]
+  })
+})
+
 test('import call absent', t => {
   const Parser = extend()
   const source = `
