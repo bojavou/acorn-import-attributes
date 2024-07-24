@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3] - 2024-07-23
+
+### Added
+
+- Test import default+named ([92365be](https://github.com/bojavou/acorn-import-attributes/commit/458e6e1ef26e152a100e9908eebd3aa0e9368ae3))
+- Test import default+namespace ([67924f0](https://github.com/bojavou/acorn-import-attributes/commit/67924f0b825eecc061a9bd2d57846561249c6535))
+
 ## [2.0.2] - 2024-06-12
 
 ### Fixed
